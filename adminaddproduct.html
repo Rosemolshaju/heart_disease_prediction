@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>product</title>
+</head>
+<body>
+	<h1 align="center">product</h1>
+	<form method="post" enctype="multipart/form-data">
+	{% if data['updateproduct'] %}
+	<table border="1" align="center">
+	<tr>
+	<th>Category</th>
+		<td><select name="cat">
+			<option>select</option>
+			{% for row in data['category']%}
+			<option value="{{row['product_id']}}" >{{row['cat_name']}}</option>
+			{%endfor%}
+		</select></td>
+	</tr>
+	<tr>
+		<th>product_name</th>
+		<td><input type="text" name="pname" value={{data['updateproduct'][0]['product_name']}}>
+		</td>
+	</tr>
+	<tr>
+		<th>product_image</th>
+		<td><input type="file" name="pimage" value={{data['updateproduct'][0]['image']}}>
+		</td>
+	</tr>
+	
+	<tr>
+		<th>amount</th>
+		<td><input type="text" name="amount" value={{data['updateproduct'][0]['amount']}}>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+		<input type="submit" name="update" value="Update">
+		</td>
+    </table>
+    {% else %}
+	<table border="1" align="center">
+	<tr>
+	<th>Category</th>
+		<td><select name="cat">
+			<option>select</option>
+			{% for row in data['category']%}
+			<option value="{{row['product_id']}}">{{row['cat_name']}}</option>
+			{%endfor%}
+		</select></td>
+	</tr>
+	<tr>
+		<th>product_name</th>
+		<td><input type="text" name="pname">
+		</td>
+	</tr>
+	<tr>
+		<th>product_image</th>
+		<td><input type="file" name="pimage">
+		</td>
+	</tr>
+	
+	<tr>
+		<th>amount</th>
+		<td><input type="text" name="amount">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+		<input type="submit" name="submit" value="submit">
+		</td>
+    </table>
+    {% endif %}
+    </form>
+    <table align="center">
+	<tr>
+		<th>category</th>
+		<th>PRODUCT NAME</th>
+		<th>product image</th>
+		<th>amount</th>
+	</tr>
+	<tbody>
+		{% for row in data['cat_prt']%}
+		<tr>
+			<td>{{row['cat_name']}}</th>
+			<th>{{row['product_name']}}</th>
+			<th><img src="/{{row['image']}}" width="100" height="100"/></th>
+			<th>{{row['amount']}}</th>
+			<th><a href="?action=update&id={{row['product_id']}}">Update</a></th>
+			<th><a href="?action=delete&id={{row['product_id']}}">Delete</a></th>
+		</tr>
+		{% endfor %}
+	</tbody>
+	</table>
+</body>
+</html>

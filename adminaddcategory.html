@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CATEGORY</title>
+</head>
+<body>
+	<h1 align="center">Category</h1>
+	<form method="post">
+	{% if data['updatecat'] %}
+		<table border="1" align="center"> 
+	 	<tr>
+ 		<th>name</th>
+ 		<td><input type="text" name="name" value="{{data['updatecat'][0]['cat_name']}}">
+ 		</td>
+ 	</tr>
+ 	<tr>
+ 		<th>content</th>
+ 		<td><textarea name="content">{{data['updatecat'][0]['content']}}</textarea>
+ 		</td>
+ 	</tr>
+ 	<tr>
+ 		<td colspan="2" align="center">
+ 		<input type="submit" name="update" value="update">
+ 		</td>
+ 	</tr>
+</table>
+{% else %}
+	<table border="1" align="center"> 
+ 	<tr>
+ 		<th>name</th>
+ 		<td><input type="text" name="name">
+ 		</td>
+ 	</tr>
+ 	<tr>
+ 		<th>content</th>
+ 		<td><textarea name="content"></textarea>
+ 		</td>
+ 	</tr>
+ 	<tr>
+ 		<td colspan="2" align="center">
+ 		<input type="submit" name="submit" value="submit">
+ 		</td>
+ 	</tr>
+</table>
+{% endif %}
+</form>
+<br><br>
+<table align="center" border="1">
+	<tr>
+		<th>Category Name</th>
+		<th>Content</th>
+	</tr>
+	<tbody>
+	{% for row in data['cat']%}
+		<tr>
+			<th>{{row['cat_name']}}</th>
+			<th>{{row['content']}}</th>
+			<th><a href="?action=update&id={{row['cat_id']}}">Update</a></th>
+			<th><a href="?action=delete&id={{row['cat_id']}}">Delete</a></th>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+</body>
+</html>
