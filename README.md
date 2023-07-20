@@ -1,2 +1,2 @@
 # heart_disease_prediction
-The human data wants to predict heart disease want to mine data
+Using data such as blood pressure,BP and other variables predicting the heart attack or other possibilities using knn algorithm.
